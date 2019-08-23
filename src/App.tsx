@@ -1,10 +1,13 @@
 import React from 'react';
-import ImageUploadForm from './forms/ImageUploadForm';
+import Homepage from './pages/Homepage';
+import { AzureResponseProvider } from './contexts/AzureResponseContext';
 
 const App: React.FC = () => {
   return (
     <div>
-      <ImageUploadForm />
+      <AzureResponseProvider>
+        <Homepage />
+      </AzureResponseProvider>
     </div>
   );
 }
