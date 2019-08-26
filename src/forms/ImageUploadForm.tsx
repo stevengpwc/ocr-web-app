@@ -3,6 +3,7 @@ import { Formik, FormikActions, FormikProps, Form } from 'formik';
 import Button from '@atlaskit/button';
 import OcrImage, { OcrImageInterface, OcrImageInitialValue } from './fields/OcrImage';
 import { AzureResponseContext } from '../contexts/AzureResponseContext';
+import { ocrUsingAzure } from '../services/OCRService';
 
 type MyFormInterface =
   OcrImageInterface
@@ -19,10 +20,11 @@ const ImageUploadForm: React.SFC<{}> = () => {
       initialValues={InitialValues}
       onSubmit={(values: MyFormInterface, actions: FormikActions<MyFormInterface>) => {
         console.log({ values, actions });
-        window.setTimeout(() => {
-          update('Azure Response here!');
-          actions.setSubmitting(false);
-        }, 2000)
+        ocrUsingAzure(values.ocrImage)
+          .then((data) => {
+            update(data);
+            actions.setSubmitting(false);
+          })
       }}
       render={(formikProps: FormikProps<MyFormInterface>) => (
         <Form>

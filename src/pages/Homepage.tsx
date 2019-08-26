@@ -7,7 +7,7 @@ function Homepage() {
   const { state } = React.useContext(AzureResponseContext);
   return (
     <div>
-      {state
+      {state.length > 0
         ? <AzureResponseDisplayForm />
         : <ImageUploadForm />
       }

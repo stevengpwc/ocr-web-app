@@ -15,7 +15,6 @@ export function createContextUseReducer<A>(defaultValue: A, reducer: ReducerType
 }
 
 export function createContextUseState<A>(defaultValue: A) {
-  console.log('Creating createContextUseState...')
   type UpdateType = React.Dispatch<React.SetStateAction<typeof defaultValue>>
   const defaultUpdate: UpdateType = () => defaultValue
   const ctx = React.createContext({ state: defaultValue, update: defaultUpdate })

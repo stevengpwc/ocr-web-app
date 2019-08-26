@@ -4,7 +4,7 @@ import { AzureResponseContext } from '../contexts/AzureResponseContext';
 function AzureResponseDisplayForm () {
   const { state } = React.useContext(AzureResponseContext);
   return (
-    <div>{state}</div>
+    <div><ul>{ state.map(line => <li key={line}>{line}</li>) }</ul></div>
   )
 }
 

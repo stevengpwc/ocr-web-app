@@ -1,6 +1,7 @@
 import { createContextUseState } from '../utils/ContextHelper'
 
-const [ctx, provider] = createContextUseState('');
+const initialValue: string[] = [];
+const [ctx, provider] = createContextUseState(initialValue);
 
 export const AzureResponseProvider = provider;
 export const AzureResponseContext = ctx;
