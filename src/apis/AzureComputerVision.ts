@@ -36,6 +36,7 @@ async function request(axiosRequest): Promise<AxiosResponse> {
 }
 
 export async function recognizeText(file: File): Promise<any> {
+  // Ref: https://southeastasia.dev.cognitive.microsoft.com/docs/services/5adf991815e1060e6355ad44/operations/587f2c6a154055056008f200
   return request(
     () => axiosInstance.request({
       url: '/recognizeText?mode=Printed',
@@ -49,6 +50,7 @@ export async function recognizeText(file: File): Promise<any> {
 }
 
 export function getReadOperationResult(operationId: string) {
+  // Ref: https://southeastasia.dev.cognitive.microsoft.com/docs/services/5adf991815e1060e6355ad44/operations/5be108e7498a4f9ed20bf96d
   return request(
     () => axiosInstance.request({
       url: `/read/operations/${operationId}`,
