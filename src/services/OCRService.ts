@@ -1,6 +1,8 @@
+import _ from 'lodash';
 import { recognizeText, getReadOperationResult } from '../apis/AzureComputerVision';
+import { detectText } from '../apis/AwsRekognition';
 
-export async function ocrUsingAzure(file: File): Promise<any> {
+export async function ocrUsingAzure(file: File): Promise<string[]> {
   const operationResponse = await recognizeText(file);
   const operationLocationId = operationResponse.headers['operation-location'].match(/(\w+-){4}\w+$/)[0];
   console.log(operationLocationId);
@@ -19,4 +21,16 @@ export async function ocrUsingAzure(file: File): Promise<any> {
   });
 
   return result;
+}
+
+export async function ocrUsingAws(file: File): Promise<string[]> {
+  const awsResponse = await detectText(file);
+  const sorted = _.orderBy(awsResponse.TextDetections, ['Confidence'], ['desc']);
+  const result = sorted.map((textDetection) => {
+    if (typeof textDetection.DetectedText !== 'string') {
+      return '';
+    }
+    return textDetection.DetectedText;
+  });
+  return _.uniq(result);
 }
