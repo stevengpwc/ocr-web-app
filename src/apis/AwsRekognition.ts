@@ -1,8 +1,6 @@
 import AWS from 'aws-sdk';
 
-// Cognito_OcrWebAppAuth_Role
-// Cognito_OcrWebAppUnauth_Role
-
+// Ref: https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/getting-started-browser.html
 // Initialize the Amazon Cognito credentials provider
 AWS.config.region = 'ap-southeast-1'; // Region
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -18,6 +16,7 @@ export async function detectText(file: File): Promise<AWS.Rekognition.DetectText
     }
   };
   return new Promise((resolve, reject) => {
+    // Ref: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Rekognition.html#detectText-property
     rekognition.detectText(params, (err, data) => {
       if (err) {
         console.log(err);
