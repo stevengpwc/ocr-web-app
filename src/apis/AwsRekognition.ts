@@ -4,7 +4,7 @@ import AWS from 'aws-sdk';
 // Initialize the Amazon Cognito credentials provider
 AWS.config.region = 'ap-southeast-1'; // Region
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-  IdentityPoolId: 'ap-southeast-1:81e26be5-c441-4ee9-83c3-18cdfcc877f4',
+  IdentityPoolId: 'ap-southeast-1:509166f3-a16e-48d1-a102-d5bceb1d119e',
 });
 const rekognition = new AWS.Rekognition();
 
