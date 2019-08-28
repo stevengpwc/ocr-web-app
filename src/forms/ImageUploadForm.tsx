@@ -25,11 +25,17 @@ const ImageUploadForm: React.SFC<{}> = () => {
         ocrUsingAws(values.ocrImage)
           .then((data) => {
             updateAwsResponse(data);
+          }).catch((err) => {
+            updateAwsResponse([err.message]);         
+          }).finally(() => {
             actions.setSubmitting(false);
           })
         ocrUsingAzure(values.ocrImage)
           .then((data) => {
             updateAzureResponse(data);
+          }).catch((err) => {
+            updateAzureResponse([err.message]);
+          }).finally(() => {
             actions.setSubmitting(false);
           })
       }}
