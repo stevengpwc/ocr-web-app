@@ -36,7 +36,11 @@ const validate = (value: OcrImageInterface['ocrImage']) => {
 
 const FileInputBlock = styled.input`
   display: block;
-`
+`;
+
+const Wrapper = styled.div`
+  margin-bottom: 16px;
+`;
 
 const OcrImage: React.SFC<{}> = () => {
   return (
@@ -44,7 +48,7 @@ const OcrImage: React.SFC<{}> = () => {
       name={fieldName}
       validate={validate}
       render={({ field, form }: FieldProps<OcrImageInterface>) => (
-        <div>
+        <Wrapper>
           <Label htmlFor={fieldName}>{label_fieldLabel}<RequiredIndicator>*</RequiredIndicator></Label>
           <FileInputBlock name={fieldName} type='file'
             onChange={(e) => {
@@ -64,7 +68,7 @@ const OcrImage: React.SFC<{}> = () => {
               {form.errors[fieldName]}
             </ErrorMessage>
           }
-        </div>
+        </Wrapper>
       )}
     />
   )
